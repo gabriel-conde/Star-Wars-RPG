@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+body {
+    background-color: #FFC07F;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#game {
+    max-width: 600px;
+    max-height: 400px;
+    background-color: #FFCF99;
+    margin-top: 35px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+
+#controls, #stats {
+    border: 1px solid #0a0a23;
+    border-radius: 10px;
+    color: #0a0a23;
+    padding:  10px;
+}
+
+#monsterStats {
+    display: none;
+    border: 1px solid #0a0a23;
+    border-radius: 10px;
+    padding: 5px;
+    color: #ffffff;
+    background-color: #F15156;
+}
+
+.stat {
+    padding-right: 10px;
+}
+
+button {
+    cursor: pointer;
+    color: #0a0a23;
+    background-color: #feac32;
+    background-image: linear-gradient(#fecc4c, #ffac33);
+    border: 3px solid #ffbb00;
+    border-radius: 3px;
+    padding: 4px 8px 4px 8px;
+}
+
+  
