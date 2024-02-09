@@ -30,6 +30,6 @@ Galactic Adventures: Rise of the Jedi is a text-based adventure game where you m
 
 ## Try it out ℹ️
 
-To try out the game for yourself visit [Galactic Adventures: Rise of the Jedi](https://galactic-adventures-rise-of-the-jedi.netlify.app/).
+To try out the game for yourself visit [Galactic Adventures: Rise of the Jedi](https://galactic-adventures-rise-of-the-jedi.netlify.app/){:target="_blank"}.
 
 May the Force be with you on your adventure! 🚀✨
