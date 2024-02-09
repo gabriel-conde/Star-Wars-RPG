@@ -2,6 +2,8 @@
 
 # Galactic Adventures: Rise of the Jedi 💥
 
+![Image of Tatooine](https://images.unsplash.com/photo-1657582649911-f62ce6ca61b2?q=80&w=2976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+
 Galactic Adventures: Rise of the Jedi is a text-based adventure game where you must defeat the Krayt Dragon that is terrorizing the town of Mos Eisley on the planet Tatooine.
 
 ## Features 🎮
