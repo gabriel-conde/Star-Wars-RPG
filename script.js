@@ -7,8 +7,6 @@ let monsterHealth;
 let inventory = ["staff"];
 
 const attackSound = new Audio('./audio/attack.wav');
-const defeatSound = new Audio('defeat_sound.mp3');
-const victorySound = new Audio('victory_sound.mp3');
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
@@ -48,13 +46,13 @@ const locations = [
     name: "Mos Eisley Town Square",
     "button text": ["Go to the market 💰", "Explore the Desert 🏜️", "Fight the Krayt Dragon 🐉"],
     "button functions": [goMarket, exploreDesert, fightKraytDragon],
-    text: "You are in the Mos Eisley Town Square. You see a sign that says \"Market\"."
+    text: "You are in the Mos Eisley Town Square. You see a sign that says \"Market\". Enter the market to recover your health and get better weapons."
   },
   {
     name: "Market",
     "button text": ["Buy 10 health (10 Kyber Crystals) 💊", "Buy weapon (30 Kyber Crystals) 🗡️", "Return to Town Square 🕌"],
     "button functions": [buyHealth, buyWeapon, goTown],
-    text: "You enter the market."
+    text: "You enter the market. Here you can buy more health and obtain better weapons. One may even grant you the abilities of a Jedi..."
   },
   {
     name: "Desert",
