@@ -1,13 +1,14 @@
-let xp = 0;
-let health = 100;
-let kyberCrystals = 50;
-let currentWeapon = 0;
-let fighting;
-let monsterHealth;
-let inventory = ["staff"];
+// Player variables
+let xp = 0; // Experience points
+let health = 100; // Player's health
+let kyberCrystals = 50; // Currency
+let currentWeapon = 0; // Index of the current weapon in the inventory
+let fighting; // Index of the current monster being fought
+let monsterHealth; // Health of the current monster
+let inventory = ["staff"]; // Player's inventory with a default weapon
 
+// HTML elements
 const attackSound = new Audio('./audio/attack.wav');
-
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -18,12 +19,15 @@ const kyberCrystalText = document.querySelector("#kyberCrystalText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+
+// Weapon and monster data
 const weapons = [
   { name: 'staff', power: 3 },
   { name: 'blaster rifle', power: 10 },
   { name: 'bowcaster', power: 30 },
   { name: 'lightsaber', power: 100 }
 ];
+
 const monsters = [
   {
     name: "Tusken Raider",
@@ -41,6 +45,8 @@ const monsters = [
     health: 500
   }
 ];
+
+// Location data
 const locations = [
   {
     name: "Mos Eisley Town Square",
@@ -82,16 +88,21 @@ const locations = [
     name: "Win", 
     "button text": ["REPLAY? 🔁", "REPLAY? 🔁", "REPLAY? 🔁"], 
     "button functions": [restart, restart, restart], 
-    text: "You defeat the Krayt Dragon! YOU WIN THE GAME! 🎉" 
+    text: "You defeated the Krayt Dragon! YOU WIN THE GAME! 🎉" 
   }
 ];
-// initialize buttons
+
+// Initialize buttons
 button1.onclick = goMarket;
 button2.onclick = exploreDesert;
 button3.onclick = fightKraytDragon;
 
+// Function to update UI based on current location
 function update(location) {
+  // Hide monster stats by default
   monsterStats.style.display = "none";
+
+  // Update button text and functions
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -103,20 +114,22 @@ function update(location) {
   // Change image based on location
   if (location.name === "Mos Eisley Town Square") {
     locationImage.src = "./assets/town_square.jpg";
-} else if (location.name === "Market") {
+  } else if (location.name === "Market") {
     locationImage.src = "./assets/market.jpg";
-} else if (location.name === "Desert") {
+  } else if (location.name === "Desert") {
     locationImage.src = "./assets/desert.jpg";
-} else if (location.name === "Fight") {
+  } else if (location.name === "Fight") {
     locationImage.src = "./assets/fight.jpg";
-} else if (location.name === "Defeat Monster") {
+  } else if (location.name === "Defeat Monster") {
     locationImage.src = "./assets/defeat_monster.jpg";
-} else if (location.name === "Lose") {
+  } else if (location.name === "Lose") {
     locationImage.src = "./assets/lose.jpg";
-} else if (location.name === "Win") {
+  } else if (location.name === "Win") {
     locationImage.src = "./assets/victory.jpg";
-}   
+  }   
 }
+
+// Functions for different locations
 function goTown() {
   update(locations[0]);
 }
@@ -129,6 +142,7 @@ function exploreDesert() {
   update(locations[2]);
 }
 
+// Function to buy health
 function buyHealth() {
   if (kyberCrystals >= 10) {
     kyberCrystals -= 10;
@@ -140,8 +154,11 @@ function buyHealth() {
   }
 }
 
+// Function to buy a weapon
 function buyWeapon() {
+  // Check if the player can buy a weapon
   if (currentWeapon < weapons.length - 1) {
+    // Check if the player has enough currency
     if (kyberCrystals >= 30) {
       kyberCrystals -= 30;
       currentWeapon++;
@@ -160,7 +177,9 @@ function buyWeapon() {
   }
 }
 
+// Function to sell a weapon
 function sellWeapon() {
+  // Check if the player has more than one weapon to sell
   if (inventory.length > 1) {
     kyberCrystals += 15;
     kyberCrystalText.innerText = kyberCrystals;
@@ -172,21 +191,25 @@ function sellWeapon() {
   }
 }
 
+// Function to initiate the fight with Tusken Raider
 function fightTuskenRaider() {
   fighting = 0;
   goFight();
 }
 
+// Function to initiate the fight with Rancor
 function fightRancor() {
   fighting = 1;
   goFight();
 }
 
+// Function to initiate the fight with Krayt Dragon
 function fightKraytDragon() {
   fighting = 2;
   goFight();
 }
 
+// Function to prepare for the fight
 function goFight() {
   update(locations[3]);
   monsterHealth = monsters[fighting].health;
@@ -195,6 +218,7 @@ function goFight() {
   monsterHealthText.innerText = monsterHealth;
 }
 
+// Function to handle player's attack
 function attack() {
     attackSound.play(); // Play attack sound
     text.innerText = "The " + monsters[fighting].name + " attacks.";
@@ -228,20 +252,24 @@ function attack() {
     }
 }
 
+// Function to calculate the value of monster's attack
 function getMonsterAttackValue(level) {
     const hit = (level * 5) - (Math.floor(Math.random() * xp));
     console.log(hit);
     return hit > 0 ? hit : 0;
 }
 
+// Function to determine if the monster is hit
 function isMonsterHit() {
     return Math.random() > .2 || health < 20;
 }
 
+// Function to handle player's dodge
 function dodge() {
   text.innerText = "You dodge the attack from the " + monsters[fighting].name + ".";
 }
 
+// Function to handle defeating a monster
 function defeatMonster() {
   kyberCrystals += Math.floor(monsters[fighting].level * 6.7);
   xp += monsters[fighting].level;
@@ -250,22 +278,12 @@ function defeatMonster() {
   update(locations[4]);
 }
 
+// Function to handle player's loss
 function lose() {
   update(locations[5]);
 }
 
+// Function to handle player's victory
 function winGame() {
   update(locations[6]);
-}
-
-function restart() {
-  xp = 0;
-  health = 100;
-  kyberCrystals = 50;
-  currentWeapon = 0;
-  inventory = ["staff"];
-  kyberCrystalText.innerText = kyberCrystals;
-  healthText.innerText = health;
-  xpText.innerText = xp;
-  goTown();
 }
