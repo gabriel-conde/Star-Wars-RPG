@@ -144,6 +144,7 @@ function exploreDesert() {
 
 // Function to buy health
 function buyHealth() {
+  // Check if the player has enough currency
   if (kyberCrystals >= 10) {
     kyberCrystals -= 10;
     health += 10;
@@ -209,7 +210,7 @@ function fightKraytDragon() {
   goFight();
 }
 
-// Function to prepare for the fight
+// Function to prepare for fight with a monster
 function goFight() {
   update(locations[3]);
   monsterHealth = monsters[fighting].health;
@@ -220,7 +221,7 @@ function goFight() {
 
 // Function to handle player's attack
 function attack() {
-    attackSound.play(); // Play attack sound
+    attackSound.play(); // Play an attack sound
     text.innerText = "The " + monsters[fighting].name + " attacks.";
     text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
     health -= getMonsterAttackValue(monsters[fighting].level);
@@ -252,7 +253,7 @@ function attack() {
     }
 }
 
-// Function to calculate the value of monster's attack
+// Function to calculate the value of a monster's attack
 function getMonsterAttackValue(level) {
     const hit = (level * 5) - (Math.floor(Math.random() * xp));
     console.log(hit);
@@ -278,12 +279,25 @@ function defeatMonster() {
   update(locations[4]);
 }
 
-// Function to handle player's loss
+// Function to handle a player's loss
 function lose() {
   update(locations[5]);
 }
 
-// Function to handle player's victory
+// Function to handlea a player's victory
 function winGame() {
   update(locations[6]);
+}
+
+// Function to restart the game
+function restart() {
+  xp = 0;
+  health = 100;
+  kyberCrystals = 50;
+  currentWeapon = 0;
+  inventory = ["staff"];
+  kyberCrystalText.innerText = kyberCrystals;
+  healthText.innerText = health;
+  xpText.innerText = xp;
+  goTown();
 }
